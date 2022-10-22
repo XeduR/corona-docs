@@ -87,7 +87,7 @@
 </tr>
 <tr class="even">
 <td align="left"><strong>Revision</strong></td>
-<td align="left"><a href="https://github.com/coronalabs/corona/releases">Release 2020.3619</a></td>
+<td align="left"><a href="https://solar2d.com/download/">Release 2021.3646</a></td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>Keywords</strong></td>
@@ -107,6 +107,7 @@
 <div class="notebox-title-imp">
 Important
 </div>
+<p>This is a legacy Unity Ads plugin using Unity SDK v3, see <a href="../../plugin/unityads-v4/index.html">Unity SDK v4</a></p>
 <p>On a per-app basis, the first time a Unity ad appears, the user will see a banner with the option to opt-out of behaviorally targeted advertising. Thereafter, the user can click an information button to receive the opt-out again.</p>
 <p>Although UnityAds will automatically present users with an opportunity to opt-out of targeted advertising, with no implementation needed from the publisher, check out new <code>setHasUserConsent</code> method to enable manual GDPR data collection restrictions.</p>
 <p>See more at <a href="https://unityads.unity3d.com/help/legal/gdpr">Unity Ads GDPR Compliance doc page</a></p>
@@ -146,6 +147,21 @@ Important
 <p>To use this plugin, add an entry into the <code>plugins</code> table of <code>build.settings</code>. When added, the build server will integrate the plugin during the build phase. </p>
 <pre class="brush: lua;">settings =
 {
+    iphone =
+    {
+        plist =
+        {
+            NSUserTrackingUsageDescription = "Your data will be used to provide you a better and personalized ad experience.",
+            SKAdNetworkItems = {
+                { SKAdNetworkIdentifier = "4dzt52r2t5.skadnetwork" },
+                { SKAdNetworkIdentifier = "bvpn9ufa9b.skadnetwork" },
+            },
+        },
+    },
+    android =
+    {
+        minSdkVersion = "19",
+    },
     plugins =
     {
         ["plugin.unityads"] =
@@ -169,6 +185,7 @@ Note
 <li><code>&quot;android.permission.INTERNET&quot;</code></li>
 <li><code>&quot;android.permission.ACCESS_NETWORK_STATE&quot;</code></li>
 </ul>
+<p>Also, minimum Android API level required is 19</p>
 </div>
 </div>
 <div id="support" class="section level2">
@@ -180,7 +197,7 @@ Note
 <hr>
 <div id="footer">
 <p class="copyright">
-© 2020 Solar2D All Rights Reserved.
+© 2021 Solar2D All Rights Reserved.
 </p>
 <p class="feedback">
 Help us help you! If you notice a problem with this page, please report it.

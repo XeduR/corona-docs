@@ -57,6 +57,7 @@
 <ul>
 <li><a href="#event.products">event.products</a><ul>
 <li><a href="#overview">Overview</a></li>
+<li><a href="#json-entries">JSON entries</a></li>
 </ul></li>
 </ul>
 </div>
@@ -78,7 +79,7 @@
 </tr>
 <tr class="odd">
 <td align="left"><strong>Revision</strong></td>
-<td align="left"><a href="https://github.com/coronalabs/corona/releases">Release 2020.3619</a></td>
+<td align="left"><a href="https://solar2d.com/download/">Release 2021.3646</a></td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Keywords</strong></td>
@@ -110,10 +111,122 @@
 <li><p><code>priceCurrencyCode</code> — ISO 4217 currency code for the price, for example <code>&quot;GBP&quot;</code> if the price is specified in British pounds sterling.</p></li>
 <li><p><code>originalJson</code> — A JSON-formatted <a href="../../../../api/type/String.html">string</a> representation of the product details.</p></li>
 </ul>
+</div>
+<div id="json-entries" class="section level2">
+<h2>JSON entries</h2>
+<p>Field <code>originalJson</code> contains json encoded values. Here is the table for all of its fields and how they correspond to products array entries.</p>
+<div class="inner-table">
+<table>
+<thead>
+<tr class="header">
+<th>Products entry field</th>
+<th>Original JSON field</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>title</code></td>
+<td><code>title</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>description</code></td>
+<td><code>description</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>localizedPrice</code></td>
+<td><code>price</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>productIdentifier</code></td>
+<td><code>productId</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>type</code></td>
+<td><code>type</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>priceAmountMicros</code></td>
+<td><code>price_amount_micros</code></td>
+<td>JSON field is integer</td>
+</tr>
+<tr class="odd">
+<td><code>priceCurrencyCode</code></td>
+<td><code>price_currency_code</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>originalJson</code></td>
+<td></td>
+<td>JSON doesn't contain itself</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>freeTrialPeriod</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>iconUrl</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>introductoryPrice</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>introductoryPriceAmountMicros</code></td>
+<td>Integer</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>introductoryPriceCycles</code></td>
+<td>Integer</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>introductoryPricePeriod</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>original_price</code></td>
+<td>Optional</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>original_price_micros</code></td>
+<td>Integer, optional</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>packageName</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>skuDetailsToken</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>subscriptionPeriod</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 <div id="footer">
 <p class="copyright">
-© 2020 Solar2D All Rights Reserved.
+© 2021 Solar2D All Rights Reserved.
 </p>
 <p class="feedback">
 Help us help you! If you notice a problem with this page, please report it.

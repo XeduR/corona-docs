@@ -87,11 +87,11 @@
 <tbody>
 <tr class="odd">
 <td align="left"><strong>Type</strong></td>
-<td align="left">[Library][api.type.library]</td>
+<td align="left"><a href="../../api/type/Library.html">Library</a></td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Revision</strong></td>
-<td align="left"><a href="https://github.com/coronalabs/corona/releases">Release 2020.3619</a></td>
+<td align="left"><a href="https://solar2d.com/download/">Release 2021.3646</a></td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>Keywords</strong></td>
@@ -116,6 +116,12 @@
 Important
 </div>
 <p>For Android, all <strong>new</strong> apps, or existing apps being updated with push notifications for the first time, must use <nobr><a href="https://firebase.google.com/">Firebase</a> Cloud Messaging (FCM)</nobr>, supported by this plugin. If you have a legacy app already configured for <nobr>Google Cloud Messaging (GCM)</nobr>, it will continue to work indefinitely, but you should continue using the <a href="../../plugin/notifications/index.html">legacy</a> plugin instead of this plugin.</p>
+</div>
+<div class="guide-notebox-imp">
+<div class="notebox-title-imp">
+Important
+</div>
+<p>To use Firebase notifications on iOS make sure to include <code>plugin.notifications.v2.firebase</code> plugin in your <code>build.settings</code>. This plugin is identical to the <code>plugin.notifications.v2</code> and also includes libraries required to operate notification through Firebase on iOS. Note you that to use Firebase for iOS you need to configure your Firebase project with the necessary Apple Push Notfication Auth or Keys, <a href="https://firebase.google.com/docs/cloud-messaging/ios/client#upload_your_apns_authentication_key">Read More Here</a>.</p>
 </div>
 </div>
 <div id="syntax" class="section level2">
@@ -151,6 +157,17 @@ Important
     plugins =
     {
         ["plugin.notifications.v2"] =
+        {
+            publisherId = "com.coronalabs"
+        },
+    },
+}</pre>
+<p>Or use <code>plugin.notifications.v2.firebase</code> if you plan to use Firebase on iOS.</p>
+<pre class="brush: lua; gutter: false; highlight: [5,6,7,8]; first-line: 1;">settings =
+{
+    plugins =
+    {
+        ["plugin.notifications.v2.firebase"] =
         {
             publisherId = "com.coronalabs"
         },
@@ -237,7 +254,7 @@ Important
 <hr>
 <div id="footer">
 <p class="copyright">
-© 2020 Solar2D All Rights Reserved.
+© 2021 Solar2D All Rights Reserved.
 </p>
 <p class="feedback">
 Help us help you! If you notice a problem with this page, please report it.
