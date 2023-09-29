@@ -93,9 +93,13 @@
 <li><a href="#androiddisplayheightininches">androidDisplayHeightInInches</a></li>
 <li><a href="#androiddisplayxdpi">androidDisplayXDpi</a></li>
 <li><a href="#androiddisplayydpi">androidDisplayYDpi</a></li>
+<li><a href="#hassoftwarekeys">hasSoftwareKeys</a></li>
 </ul></li>
-<li><a href="#ios">iOS</a><ul>
+<li><a href="#ios-ipados-tvos-macos">iOS / iPadOS / tvOS / macOS</a><ul>
 <li><a href="#iosidentifierforvendor">iosIdentifierForVendor</a></li>
+<li><a href="#reducemotion">reduceMotion</a></li>
+<li><a href="#reducetransparency">reduceTransparency</a></li>
+<li><a href="#differentiatewithoutcolor">differentiateWithoutColor</a></li>
 </ul></li>
 <li><a href="#graphics">Graphics</a><ul>
 <li><a href="#gpusupportshighprecisionfragmentshaders">gpuSupportsHighPrecisionFragmentShaders</a></li>
@@ -135,7 +139,7 @@
 </tr>
 <tr class="even">
 <td align="left"><strong>Revision</strong></td>
-<td align="left"><a href="https://solar2d.com/download/">Release 2021.3646</a></td>
+<td align="left"><a href="https://solar2d.com/download/">Release 2023.3686</a></td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>Keywords</strong></td>
@@ -184,7 +188,7 @@
 </div>
 <div id="build" class="section level3">
 <h3>build</h3>
-<p><code>&quot;build&quot;</code> returns the Solar2D build string as it appears in the <strong>About</strong> box of the Solar2D Simulator.</p>
+<p><code>&quot;build&quot;</code> returns the build string as it appears in the <strong>About</strong> box of the Solar2D Simulator.</p>
 </div>
 <div id="bundleid" class="section level3">
 <h3>bundleID</h3>
@@ -283,7 +287,7 @@ Note
 <li><code>amazon</code> — targets the Amazon app store (only returned on Android).</li>
 <li><code>google</code> — targets Google Play (only returned on Android).</li>
 <li><code>windows</code> — targets the Windows app store.</li>
-<li><code>none</code> — indicates that the app is not targeting a specific app store. This is always returned by the Solar2D Simulator.</li>
+<li><code>none</code> — indicates that the app is not targeting a specific app store. This is always returned by the Solar2D Simulator.</li>
 </ul>
 </div>
 </div>
@@ -382,12 +386,28 @@ Note
 <h3>androidDisplayYDpi</h3>
 <p><code>&quot;androidDisplayYDpi&quot;</code> returns the DPI (dots per inch) of the screen along the <strong>y</strong> axis, relative to the orientation of the application. This can be used to convert pixels to inches and vice-versa. Returns <code>nil</code> on all other platforms.</p>
 </div>
+<div id="hassoftwarekeys" class="section level3">
+<h3>hasSoftwareKeys</h3>
+<p><code>&quot;hasSoftwareKeys&quot;</code> returns boolean, <code>true</code> if Android device has a Software Keys(i.e for Home and Back Button) instead of Physical Keys. Returns <code>nil</code> on all other platforms. Requires <code>Solar2D 2023.3686</code> or a newer build.</p>
 </div>
-<div id="ios" class="section level2">
-<h2>iOS</h2>
+</div>
+<div id="ios-ipados-tvos-macos" class="section level2">
+<h2>iOS / iPadOS / tvOS / macOS</h2>
 <div id="iosidentifierforvendor" class="section level3">
 <h3>iosIdentifierForVendor</h3>
-<p><code>&quot;iosIdentifierForVendor&quot;</code> returns the value of <code>&quot;identifierForVendor&quot;</code> (see <a href="https://developer.apple.com/documentation/uikit/uidevice">here</a>).</p>
+<p><code>&quot;iosIdentifierForVendor&quot;</code> returns an alphanumeric string that uniquely identifies a device to the app’s vendor. (See <a href="https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor">Apple documentation</a>).</p>
+</div>
+<div id="reducemotion" class="section level3">
+<h3>reduceMotion</h3>
+<p><code>&quot;reduceMotion&quot;</code> returns a boolean indicating whether the system preference for Reduce Motion is enabled. (See <a href="https://developer.apple.com/documentation/swiftui/environmentvalues/accessibilityreducemotion">Apple documentation</a>) Requires <code>Solar2D 2023.3693</code> or later.</p>
+</div>
+<div id="reducetransparency" class="section level3">
+<h3>reduceTransparency</h3>
+<p><code>&quot;reduceTransparency&quot;</code> returns a boolean indicating whether the system preference for Reduce Transparency is enabled. (See <a href="https://developer.apple.com/documentation/swiftui/environmentvalues/accessibilityreducetransparency">Apple documentation</a>) Requires <code>Solar2D 2023.3693</code> or later.</p>
+</div>
+<div id="differentiatewithoutcolor" class="section level3">
+<h3>differentiateWithoutColor</h3>
+<p><code>&quot;differentiateWithoutColor&quot;</code> returns a boolean indicating whether the system preference for Differentiate without Color is enabled. (See <a href="https://developer.apple.com/documentation/swiftui/environmentvalues/accessibilitydifferentiatewithoutcolor/">Apple documentation</a>) Requires <code>Solar2D 2023.3693</code> or later.</p>
 <!---
 
 ### isoCountryCode
@@ -499,7 +519,7 @@ end</pre>
 <hr>
 <div id="footer">
 <p class="copyright">
-© 2021 Solar2D All Rights Reserved.
+© 2020-2023 Solar2D All Rights Reserved.
 </p>
 <p class="feedback">
 Help us help you! If you notice a problem with this page, please report it.

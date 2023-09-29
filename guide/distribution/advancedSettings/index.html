@@ -59,6 +59,7 @@
 <li><a href="#advanced-settings-ios">Advanced Settings — iOS</a><ul>
 <li><a href="#device-capabilities">Device Capabilities</a></li>
 <li><a href="#png-processing">PNG Processing</a></li>
+<li><a href="#alternate-icon">Alternate Icon</a></li>
 </ul></li>
 <li><a href="#advanced-settings-android">Advanced Settings — Android</a><ul>
 <li><a href="#minimum-sdk-version">Minimum SDK Version</a></li>
@@ -68,7 +69,9 @@
 <li><a href="#large-heap">Large Heap</a></li>
 <li><a href="#android-directives">Android Directives</a></li>
 </ul></li>
-<li><a href="#plugins-supported-platforms">Plugins — Supported Platforms</a></li>
+<li><a href="#plugins-supported-platforms">Plugins — Supported Platforms</a><ul>
+<li><a href="#forcing-plugin-versions">Forcing Plugin versions</a></li>
+</ul></li>
 <li><a href="#build-control">Build Control</a></li>
 </ul></li>
 </ul>
@@ -147,6 +150,22 @@ Notes
 
         },
         skipPNGCrush = true,
+    },
+}</pre>
+</div>
+<div id="alternate-icon" class="section level3">
+<h3>Alternate Icon</h3>
+<p>If you want to include alternate icons with your xassets project, use <code>alternateIcons</code> and include array of the icon names. Only available in Solar2D Sim 2023.3692+</p>
+<pre class="brush: lua; gutter: false; highlight: [9]; first-line: 1;">settings =
+{
+    iphone =
+    {
+        plist =
+        {
+
+        },
+        xcassets = "Images.xcassets",
+        alternateIcons = {"Icon1", "Icon2"},
     },
 }</pre>
 <p><a id="android"></a></p>
@@ -289,7 +308,7 @@ Important
 {
     android =
     {
-        manifestChildElements = 
+        manifestChildElements =
         {
             -- Array of strings
             [[
@@ -445,7 +464,17 @@ Note
 </div>
 <p>Omitting the <code>supportedPlatforms</code> table effectively includes the plugin on all platforms that it inherently supports.</p>
 </div>
+<div id="forcing-plugin-versions" class="section level3">
+<h3>Forcing Plugin versions</h3>
+<p>You can set versions to be the same as GitHub tag name for the release for plugin found on <a href="https://plugins.solar2d.com">the Solar2D Free Plugins Directory</a>. For the plugin in example <a href="https://github.com/coronalabs/com.coronalabs-CoronaProvider.native.popup.activity/releases">here are available releases</a> Note this requires Solar2D 3676+</p>
+<pre class="brush: lua;">plugins = {
+     ["com.coronalabs-CoronaProvider.native.popup.activity"] = {
+                publisherId = "com.coronalabs",
+                version = "v3",
+     },
+},</pre>
 <p><a id="buildcontrol"></a></p>
+</div>
 </div>
 <div id="build-control" class="section level2">
 <h2>Build Control</h2>
@@ -462,7 +491,7 @@ Note
 <hr>
 <div id="footer">
 <p class="copyright">
-© 2021 Solar2D All Rights Reserved.
+© 2020-2023 Solar2D All Rights Reserved.
 </p>
 <p class="feedback">
 Help us help you! If you notice a problem with this page, please report it.
