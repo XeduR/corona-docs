@@ -62,7 +62,7 @@
 <li><a href="#params-required">params <sub><sup>(required)</sup></sub></a></li>
 </ul></li>
 <li><a href="#parameter-reference">Parameter Reference</a><ul>
-<li><a href="#appid-required">appId <sub><sup>(required)</sup></sub></a></li>
+<li><a href="#appid-deprecated">appId <sub><sup>(deprecated)</sup></sub></a></li>
 <li><a href="#testmode-optional">testMode <sub><sup>(optional)</sup></sub></a></li>
 <li><a href="#videoadvolume-optional">videoAdVolume <sub><sup>(optional)</sup></sub></a></li>
 </ul></li>
@@ -128,9 +128,9 @@
 <div id="parameter-reference" class="section level2">
 <h2>Parameter Reference</h2>
 <p>The <code>params</code> table includes parameters for AdMob initialization.</p>
-<div id="appid-required" class="section level5">
-<h5>appId <sub><sup>(required)</sup></sub></h5>
-<p><em><a href="../../api/type/String.html">String</a>.</em> The app ID for your app, gathered from the AdMob <a href="https://www.google.com/admob/">dashboard</a>.</p>
+<div id="appid-deprecated" class="section level5">
+<h5>appId <sub><sup>(deprecated)</sup></sub></h5>
+<p><em><a href="../../api/type/String.html">String</a>.</em> The app ID for your app, gathered from the AdMob <a href="https://www.google.com/admob/">dashboard</a>. The appId should be set in build.settings. See <a href="../../plugin/admob/index.html">admob</a> project settings.</p>
 <div class="docs-tip-outer docs-tip-color-alert">
 <div class="docs-tip-inner-left">
 <div class="fa fa-exclamation-circle" style="font-size: 35px;">
@@ -180,7 +180,7 @@ local function adListener( event )
 end
 
 -- Initialize the AdMob plugin
-admob.init( adListener, { appId="YOUR_ADMOB_APP_ID" } )</pre>
+admob.init( adListener, { testMode=true } )</pre>
 <hr>
 <div id="footer">
 <p class="copyright">
