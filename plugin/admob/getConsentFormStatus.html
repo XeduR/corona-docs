@@ -57,6 +57,7 @@
 <ul>
 <li><a href="#admob.getconsentformstatus">admob.getConsentFormStatus()</a><ul>
 <li><a href="#overview">Overview</a></li>
+<li><a href="#gotchas">Gotchas</a></li>
 <li><a href="#syntax">Syntax</a></li>
 <li><a href="#example">Example</a></li>
 </ul></li>
@@ -99,9 +100,17 @@
 </blockquote>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>Returns two <a href="../../api/type/String.html">Strings</a> <code>formStatus</code> and <code>consentStatus</code></p>
-<p><code>formStatus</code> can be <code>&quot;available&quot;</code>, <code>&quot;unavailable&quot;</code>, or <code>&quot;unknown&quot;</code></p>
-<p><code>consentStatus</code> can be <code>&quot;obtained&quot;</code>, <code>&quot;required&quot;</code>, <code>&quot;notRequired&quot;</code>, or <code>&quot;unknown&quot;</code></p>
+<p>Returns two <a href="../../api/type/String.html">Strings</a> <code>formStatus</code> and <code>consentStatus</code>:</p>
+<p><code>formStatus</code> can be <code>&quot;available&quot;</code>, <code>&quot;unavailable&quot;</code>, or <code>&quot;unknown&quot;</code>.</p>
+<p><code>consentStatus</code> can be <code>&quot;obtained&quot;</code>, <code>&quot;required&quot;</code>, <code>&quot;notRequired&quot;</code>, or <code>&quot;unknown&quot;</code>.</p>
+</div>
+<div id="gotchas" class="section level2">
+<h2>Gotchas</h2>
+<ul>
+<li><p>AdMob needs to initialize before you can run <code>admob.updateConsentForm()</code>.</p></li>
+<li><p>You must wait after running <code>admob.updateConsentForm()</code> before <code>admob.getConsentFormStatus()</code> returns non-nil values.</p></li>
+<li><p>The consent form is a legal document and underage users cannot consent to its contents. This means <code>formStatus</code> will always be <code>&quot;unavailable&quot;</code> for underaged users and <code>consentStatus</code> will always be <code>&quot;obtained&quot;</code>. AdMob does not specify what the user has consented to.</p></li>
+</ul>
 </div>
 <div id="syntax" class="section level2">
 <h2>Syntax</h2>
@@ -112,16 +121,22 @@
 <pre class="brush: lua;">local admob = require( "plugin.admob" )
 
 
--- Initialize the AdMob plugin
-
 local function adListener( event )
+
+    if ( event.phase == "init" ) then
+        -- Wait until "init" phase to update the Consent Form.
+        admob.updateConsentForm({ underage=false })
+    end
 
 end
 
-admob.init( adListener, { appId="YOUR_ADMOB_APP_ID" } )
+-- Initialize the AdMob plugin.
+admob.init( adListener, { appId="YOUR_ADMOB_APP_ID", testMode=true } )
 
+-- Sometime later, get the form and consent status:
+-- (If you don't wait for the consent form to update, then both of these values will be nil.)
 local formStatus, consentStatus = admob.getConsentFormStatus()
-print("Form Status:".. formStatus .."  Consent Status: "..consentStatus)</pre>
+print( "Form Status:" .. tostring( formStatus ) .. ", Consent Status: " .. tostring( consentStatus ) )</pre>
 <hr>
 <div id="footer">
 <p class="copyright">

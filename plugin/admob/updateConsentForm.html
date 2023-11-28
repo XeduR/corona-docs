@@ -57,6 +57,7 @@
 <ul>
 <li><a href="#admob.updateconsentform">admob.updateConsentForm()</a><ul>
 <li><a href="#overview">Overview</a></li>
+<li><a href="#gotchas">Gotchas</a></li>
 <li><a href="#syntax">Syntax</a><ul>
 <li><a href="#options-optional">options <sub><sup>(optional)</sup></sub></a></li>
 </ul></li>
@@ -105,7 +106,14 @@
 </blockquote>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>This function updates Consent Manager with information that helps determine if a message needs to be displayed.</p>
+<p>This function updates the Consent Manager with information that helps determine if a message needs to be displayed.</p>
+</div>
+<div id="gotchas" class="section level2">
+<h2>Gotchas</h2>
+<ul>
+<li><p>AdMob needs to initialize before you can run <code>admob.updateConsentForm()</code>.</p></li>
+<li><p>The Consent Form is a legal document and underage users cannot consent to its contents. This means <code>formStatus</code> will always be <code>&quot;unavailable&quot;</code> for underaged users and <code>consentStatus</code> will always be <code>&quot;obtained&quot;</code>. AdMob does not specify what the user has consented to.</p></li>
+</ul>
 </div>
 <div id="syntax" class="section level2">
 <h2>Syntax</h2>
@@ -133,11 +141,15 @@
 
 local function adListener( event )
 
-end
--- Initialize the AdMob plugin
-admob.init( adListener, { appId="YOUR_ADMOB_APP_ID" } )
+    if ( event.phase == "init" ) then
+        -- Wait until "init" phase to update the Consent Form.
+        admob.updateConsentForm({ underage=true, debug={ geography = "EEA", testDeviceIdentifiers={"Your-Device-Hash"} } })
+    end
 
-admob.updateConsentForm({ underage=true, debug={ geography = "EEA", testDeviceIdentifiers={"Your-Device-Hash"} } })</pre>
+end
+
+-- Initialize the AdMob plugin
+admob.init( adListener, { appId="YOUR_ADMOB_APP_ID", testMode=true } )</pre>
 <hr>
 <div id="footer">
 <p class="copyright">
