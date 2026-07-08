@@ -57,6 +57,7 @@
 <ul>
 <li><a href="#advanced-build-settings">Advanced Build Settings</a><ul>
 <li><a href="#advanced-settings-ios">Advanced Settings — iOS</a><ul>
+<li><a href="#minimum-ios-version">Minimum iOS Version</a></li>
 <li><a href="#device-capabilities">Device Capabilities</a></li>
 <li><a href="#png-processing">PNG Processing</a></li>
 <li><a href="#alternate-icon">Alternate Icon</a></li>
@@ -103,6 +104,35 @@
 <p><a id="ios"></a></p>
 <section id="advanced-settings-ios" class="level2">
 <h2>Advanced Settings — iOS</h2>
+<section id="minimum-ios-version" class="level3">
+<h3>Minimum iOS Version</h3>
+<p>Providing a minimum iOS version with the <code>MinimumOSVersion</code> key allows you to exclude your app from being installed on devices with older versions of iOS. It’s specified within the <nobr><code>iphone</code> → <code>plist</code></nobr> table and corresponds to Apple’s <a href="https://developer.apple.com/documentation/BundleResources/Information-Property-List/MinimumOSVersion"><code>MinimumOSVersion</code></a> property list key.</p>
+<pre class="highlight: [7]; first-line: 1; gutter: false; brush: lua;">settings =
+{
+    iphone =
+    {
+        plist =
+        {
+            MinimumOSVersion = "11.0",
+        },
+    },
+}</pre>
+<div class="guide-notebox">
+<div class="notebox-title">
+Notes
+</div>
+<ul>
+<li><p>The value must be specified as a <strong>string</strong> <nobr>(e.g. <code>"11.0"</code>)</nobr>. A numeric value such as <code>11.0</code> is ignored and the default minimum version is used instead.</p></li>
+<li><p>If not specified, the minimum version defaults to <code>"8.0"</code>, the lowest version of iOS that Solar2D supports. However, when building against iOS SDK 16.4 or later, Solar2D raises any value below <code>"11.0"</code> up to <code>"11.0"</code>. Since current versions of Xcode ship newer SDKs, <code>"11.0"</code> is effectively the lowest value you can target.</p></li>
+</ul>
+</div>
+<div class="guide-notebox-imp">
+<div class="notebox-title-imp">
+Important
+</div>
+<p>If a plugin you use requires a newer version of iOS than your app’s minimum, Solar2D does <strong>not</strong> raise <code>MinimumOSVersion</code> automatically to accommodate it. You must set it yourself to match the highest iOS version required by any of your plugins, otherwise the build can fail. Some plugins, such as <a href="../../../plugin/appodeal/index.html">Appodeal</a>, document the exact value they require.</p>
+</div>
+</section>
 <section id="device-capabilities" class="level3">
 <h3>Device Capabilities</h3>
 <p>If you wish to limit your iOS app to devices with specific capabilities, you can include the optional <code>UIRequiredDeviceCapabilities</code> key within the <nobr><code>iphone</code> → <code>plist</code></nobr> table. The value of this key should be a table containing specific keys matching Apple’s <a href="https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW3">documentation</a>. For example:</p>
